@@ -1,0 +1,24 @@
+
+# Labels.txt copied from http://www.osric.com/chris/phonetic.html
+
+# Autogeneration of labels
+labelGen <- function() {
+    labelSet <- read.table("labels.txt", as.is=TRUE)[, 2]
+    nLab <- length(labelSet)
+    whichLab <- 0
+    labelGet <- function() {
+        # Rotate through label set
+        whichLab <<- whichLab + 1
+        if (whichLab > nLab)
+            whichLab <<- 1
+        labelSet[whichLab]
+    }
+    labelReset <- function() {
+        whichLab <<- 0
+    }
+    list(labelGet=labelGet, labelReset=labelReset)
+}
+labelFuns <- labelGen()
+labelSel <- labelFuns$labelGet
+labelZero <- labelFuns$labelReset
+

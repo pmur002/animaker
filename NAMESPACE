@@ -1,0 +1,45 @@
+
+export(atomic,
+       vec, trac,
+       start, durn, "start<-", "durn<-",
+       splice,
+       timing,
+       dynPlot)
+
+S3method("as.character", "atomicAnim")
+S3method("as.character", "vecAnim")
+S3method("as.character", "tracAnim")
+S3method("print", "anim")
+S3method("print", "vecAnim")
+S3method("print", "tracAnim")
+S3method("print", "timing")
+
+S3method("length", "atomicAnim")
+S3method("length", "containerAnim")
+
+S3method("[", "containerAnim")
+S3method("[[", "containerAnim")
+S3method("[<-", "containerAnim")
+S3method("[[<-", "containerAnim")
+S3method("rep", "atomicAnim")
+S3method("rep", "containerAnim")
+
+S3method("plot", "anim")
+
+S3method("start", "atomicAnim")
+S3method("start", "vecAnim")
+S3method("start", "tracAnim")
+S3method("durn", "atomicAnim")
+S3method("durn", "vecAnim")
+S3method("durn", "tracAnim")
+S3method("start<-", "containerAnim")
+S3method("durn<-", "containerAnim")
+S3method("splice", "vecAnim")
+S3method("splice", "tracAnim")
+S3method("timing", "atomicAnim")
+S3method("timing", "vecAnim")
+S3method("timing", "tracAnim")
+S3method("simplify", "timing")
+S3method("simplify", "timingList")
+S3method("prepare", "timing")
+S3method("prepare", "timingList")

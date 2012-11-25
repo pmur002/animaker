@@ -1,0 +1,9 @@
+Package:      animaker
+Version:      0.1
+Suggests:     grid, gridSVG
+Title:        Generating Animation Timelines
+Author:       Paul Murrell and Simon Potter.
+Maintainer:   Paul Murrell <p.murrell@auckland.ac.nz>
+Description:  Functions for describing animation timelines, plus functions
+              for visualising the timelines and generating timing schemes.
+License:      GPL (>= 2)
