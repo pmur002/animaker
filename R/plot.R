@@ -155,7 +155,7 @@ dynDrawAnim.atomicAnim <- function(x, s=start(x), d=durn(x), y=1,
                         unit(1, "native") - 2*margin, default="native",
                         just=c("left"),
                         gp=gpar(col="grey", fill=NA))
-        rga <- animateGrob(rg, width=0:d, begin=offset + s, duration=d)
+        rga <- animateGrob(rg, width=c(0, d), begin=offset + s, duration=d)
         grid.draw(rgg)
         grid.draw(rga)
     }
