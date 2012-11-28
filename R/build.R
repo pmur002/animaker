@@ -78,6 +78,48 @@ durn.tracAnim <- function(x) {
     x
 }
 
+# Allow for atomic animations with durn NA
+fillDurns <- function(x, durns) {
+    UseMethod("fillDurns")
+}
+
+fillDurns.vecAnim <- function(x, durns) {
+    nad <- is.na(durns)
+    if (any(nad) && is.null(x$durn)) {
+        stop("Parent durn is NULL and child durn is NA")
+    } 
+    # Case length(x$durn) > 1 will not get here
+    # SO assume length(x$durn) == 1
+    whichNA <- which(nad)
+    if (length(x$start) == 1) {
+        starts <- sapply(x$anims, start)
+    } else {
+        starts <- x$start
+    }
+    knownDurn <- sum(starts) + sum(durns[-whichNA])
+    durns[whichNA] <- (x$durn - knownDurn)/length(whichNA)
+    durns
+}
+
+fillDurns.tracAnim <- function(x, durns) {
+    nad <- is.na(durns)
+    if (all(nad) && is.null(x$durn)) {
+        stop("Parent durn is NULL and child durn is NA")
+    } 
+    whichNA <- which(nad)
+    # Case length(x$durn) > 1 will not get here
+    if (length(x$durn) == 1) {
+        durns[whichNA] <- x$durn
+    } else { # is.null(x$durn)
+        starts <- starts(x)
+        knownStarts <- starts[-whichNA]
+        knownDurns <- durns[-whichNA]
+        maxd <- max(knownStarts + knownDurns)
+        durns[whichNA] <- maxd - starts[whichNA]
+    }
+    durns
+}
+
 # durn() gives the duration of the *container*
 # durns() gives the durations of the container *contents*
 durns <- function(x) {
@@ -87,7 +129,11 @@ durns <- function(x) {
 durns.containerAnim <- function(x) {
     if (is.null(x$durn) ||
         length(x$durn) == 1) {
-        sapply(x$anims, durn)
+        durns <- sapply(x$anims, durn)
+        if (any(is.na(durns)))
+            fillDurns(x, durns)
+        else
+            durns
     } else {
         x$durn
     }

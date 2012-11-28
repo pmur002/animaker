@@ -34,6 +34,12 @@ prepare <- function(x) {
     UseMethod("prepare")
 }
 
+"[.timingList" <- function(x, index, ...) {
+    subset <- unclass(x)[index, ...]
+    class(subset) <- c("timingList", "timing")
+    subset
+}
+
 prepare.timing <- function(x) {
     basic <- as.data.frame(x[c("label", "start", "durn")],
                            stringsAsFactors=FALSE)
@@ -50,6 +56,7 @@ print.timing <- function(x, ...) {
     print(prepare(x), right=FALSE)
 }
 
+# Declarative action-based timing
 timing <- function(x, ...) {
     UseMethod("timing")
 }
@@ -106,3 +113,28 @@ timing.tracAnim <- function(x,
     timingInfoList(timings)
 }
 
+# Procedural frame-based timing information
+frameTiming <- function(x, time=0) {
+    timing <- timing(x)
+    starts <- sapply(timing, "[[", "start")
+    ends <- starts + sapply(timing, "[[", "durn")
+    index <- (time >= starts) & (time < ends)
+    timing[index]
+}
+
+frameApply <- function(x, FUN=print, fps=1, pause=TRUE, scale=1) {
+    if (fps < 1) 
+        stop("Frames per second less than 1")
+    increment <- 1/fps
+    times <- seq(0, durn(x), increment)
+    timing <- timing(x)
+    starts <- sapply(timing, "[[", "start")
+    ends <- starts + sapply(timing, "[[", "durn")
+    for (i in times[-length(times)]) {
+        index <- (i >= starts) & (i < ends)
+        FUN(timing[index])
+        if (pause)
+            Sys.sleep(increment)
+    }
+    invisible()
+}

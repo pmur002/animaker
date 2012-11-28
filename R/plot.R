@@ -3,6 +3,9 @@
 
 animScale <- function(start, durn, xscale) {
     if (is.null(xscale)) {
+        # Special case of atomic animation that does not know its duration
+        if (is.na(durn))
+            durn <- 0
         if (durn == 0) {
             xscale <- c(start - 1, start + 1)
         } else {
@@ -46,9 +49,13 @@ drawAnim.atomicAnim <- function(x, s=start(x), d=durn(x), y=1,
     if (newpage) {
         pageSetup(s, d, xscale)
     }
+    # Special case of atomic animation that does not know its duration
+    if (is.na(d))
+        d <- 0
     if (d == 0) {
         grid.segments(s, unit(y-1, "native") + margin,
                       s, unit(y, "native") - margin,
+                      default="native",
                       gp=gpar(col=x$col))
     } else {
         grid.rect(s, y-.5, d,

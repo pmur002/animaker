@@ -3,7 +3,7 @@ export(atomic,
        vec, trac,
        start, durn, "start<-", "durn<-",
        splice,
-       timing,
+       timing, frameTiming, frameApply,
        dynPlot)
 
 S3method("as.character", "atomicAnim")
@@ -21,6 +21,7 @@ S3method("[", "containerAnim")
 S3method("[[", "containerAnim")
 S3method("[<-", "containerAnim")
 S3method("[[<-", "containerAnim")
+S3method("[", "timingList")
 S3method("rep", "atomicAnim")
 S3method("rep", "containerAnim")
 

@@ -9,12 +9,14 @@ validateContainer <- function(x) {
         stop("Invalid contents of container")
     # start has to be numeric and either length 1 or length(anims)
     if (!(is.numeric(x$start) &&
-          (length(x$start) == 1 || length(x$start) == length(x$anims))))
+          (length(x$start) == 1 || length(x$start) == length(x$anims)) &&
+          all(is.finite(x$start))))
         stop("Invalid start of container")
     # durn has to be NULL or numeric and either length 1 or length(anims)
     if (!(is.null(x$durn) ||
           (is.numeric(x$durn) &&
-           (length(x$durn) == 1 || length(x$durn) == length(x$anims)))))
+           (length(x$durn) == 1 || length(x$durn) == length(x$anims)) &&
+           all(is.finite(x$durn)))))
         stop("Invalid durn of container")
 }
 
