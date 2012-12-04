@@ -57,7 +57,7 @@ print.timing <- function(x, ...) {
 }
 
 # Declarative action-based timing
-timing <- function(x, ...) {
+timing <- function(x, s, d, lab, vec, vecNum, trac, tracNum, offset) {
     UseMethod("timing")
 }
 
