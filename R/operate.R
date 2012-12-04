@@ -65,13 +65,29 @@
 }
 
 rep.containerAnim <- function(x, ...) {
+    # Because children may have NA durns we need to enforce durns first
+    # before repeating them. This is because we would expect that the
+    # duration of an animation for one iteration to be repeated even if
+    # it is not explicitly declared.
+    nadurns <- any(is.na(sapply(x$anims, durn)))
+    if (nadurns) {
+        filledDurns <- durns(x)
+        for (i in 1:length(x)) {
+            durn(x$anims[[i]]) <- filledDurns[i]
+        }
+        if (!is.null(x$durn) && length(x$durn) == 1) {
+            x$durn <- sum(rep(sum(filledDurns), ...))
+        }
+    }
+
     x$anims <- rep(x$anims, ...)
     if (length(x$start) > 1) {
         x$start <- rep(x$start, ...)
     }
+
     if (!is.null(x$durn) &&
         length(x$durn) > 1) {
-        s$durn <- rep(x$durn, ...)
+        x$durn <- rep(x$durn, ...)
     }
     x
 }
