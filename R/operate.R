@@ -17,7 +17,7 @@
     x$anims[[index]]
 }
 
-"[<-.containerAnim" <- function(x, index, value, ...) {
+"[<-.containerAnim" <- function(x, index, ..., value) {
     x$anims[index] <- value$anims
     if (length(x$start) > 1) {
         if (length(value$start) > 1) {
@@ -45,19 +45,19 @@
     x
 }
 
-"[<-.vecAnim" <- function(x, index, value, ...) {
+"[<-.vecAnim" <- function(x, index, ..., value) {
     if (!inherits(value, "vecAnim"))
         stop("Invalid value to assign")
     NextMethod()
 }
 
-"[<-.tracAnim" <- function(x, index, value, ...) {
+"[<-.tracAnim" <- function(x, index, ..., value) {
     if (!inherits(value, "tracAnim"))
         stop("Invalid value to assign")
     NextMethod()
 }
 
-"[[<-.containerAnim" <- function(x, index, value, ...) {
+"[[<-.containerAnim" <- function(x, index, ..., value) {
     if (!inherits(value, "anim"))
         stop("Invalid value to assign")
     x$anims[[index]] <- value
@@ -72,11 +72,8 @@ rep.containerAnim <- function(x, ...) {
     nadurns <- any(is.na(sapply(x$anims, durn)))
     if (nadurns) {
         filledDurns <- durns(x)
-        for (i in 1:length(x)) {
-            durn(x$anims[[i]]) <- filledDurns[i]
-        }
         if (!is.null(x$durn) && length(x$durn) == 1) {
-            x$durn <- sum(rep(sum(filledDurns), ...))
+            x$durn <- sum(rep(filledDurns, ...))
         }
     }
 
