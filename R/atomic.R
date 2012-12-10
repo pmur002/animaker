@@ -26,6 +26,11 @@ durn.atomicAnim <- function(x) {
     x$durn
 }
 
+"durn<-.atomicAnim" <- function(x, value) {
+    x$durn <- value
+    x
+}
+
 as.character.atomicAnim <- function(x, ...) {
     paste(x$label, x$start, x$durn, sep=":")
 }

@@ -65,7 +65,7 @@ timing.atomicAnim <- function(x,
                               s=start(x), d=durn(x), lab=x$label,
                               vec=NULL, vecNum=NULL,
                               trac=NULL, tracNum=NULL,
-                              offset=0) {
+                              offset=0, ...) {
     timingInfo(x, offset + s, d, lab, vec, vecNum, trac, tracNum)
 }
 
@@ -73,7 +73,7 @@ timing.vecAnim <- function(x,
                            s=start(x), d=durn(x), lab=x$label,
                            vec=NULL, vecNum=NULL,
                            trac=NULL, tracNum=NULL,
-                           offset=0) {
+                           offset=0, ...) {
     starts <- starts(x)
     durns <- durns(x)
     nAnim <- length(x$anims)
@@ -95,7 +95,7 @@ timing.tracAnim <- function(x,
                             s=start(x), d=durn(x), lab=x$label,
                             vec=NULL, vecNum=NULL,
                             trac=NULL, tracNum=NULL,
-                            offset=0) {
+                            offset=0, ...) {
     starts <- starts(x)
     durns <- durns(x)
     nAnim <- length(x$anims)

@@ -17,12 +17,12 @@ animScale <- function(start, durn, xscale) {
 
 drawScale <- function(xscale) {
     times <- axisTicks(xscale, log=FALSE)
-    grid.text(times, times, unit(-1, "lines"), default="native")
+    grid.text(times, times, unit(-1, "lines"), default.units="native")
     grid.text(times, times,
-              unit(1, "npc") + unit(1, "lines"), default="native")
-    grid.circle(times, 0, default="native",
+              unit(1, "npc") + unit(1, "lines"), default.units="native")
+    grid.circle(times, 0, default.units="native",
                 r=unit(1, "mm"), gp=gpar(fill="black"))
-    grid.circle(times, 1, default="native",
+    grid.circle(times, 1, default.units="native",
                 r=unit(1, "mm"), gp=gpar(fill="black"))
 }
 
@@ -55,13 +55,13 @@ drawAnim.atomicAnim <- function(x, s=start(x), d=durn(x), y=1,
     if (d == 0) {
         grid.segments(s, unit(y-1, "native") + margin,
                       s, unit(y, "native") - margin,
-                      default="native",
+                      default.units="native",
                       gp=gpar(col=x$col))
     } else {
         grid.rect(s, y-.5, d,
-                  unit(1, "native") - 2*margin, default="native",
+                  unit(1, "native") - 2*margin, default.units="native",
                   just=c("left"),
-                  gp=gpar(col=x$col, fill=adjustcolor(x$col, alpha=.5)))
+                  gp=gpar(col=x$col, fill=adjustcolor(x$col, alpha.f=.5)))
     }
     if (newpage) {
         pageCleanup()
@@ -80,7 +80,7 @@ drawAnim.vecAnim <- function(x, s=start(x), d=durn(x), y=1,
     durns <- durns(x)
     nAnim <- length(x$anims)
     pushViewport(viewport(s, y-.5, d, 1,
-                          default="native",
+                          default.units="native",
                           just=c("left"),
                           xscale=c(0, d))) # starts[nAnim] + durns[nAnim])))
     for (i in 1:nAnim) {
@@ -109,7 +109,7 @@ drawAnim.tracAnim <- function(x, s=start(x), d=durn(x), y=1,
     starts <- starts(x)
     durns <- durns(x)
     nAnim <- length(x$anims)
-    pushViewport(viewport(s, y-.5, d, 1, default="native",
+    pushViewport(viewport(s, y-.5, d, 1, default.units="native",
                           just=c("left"),
                           xscale=c(0, d), # max(starts + durns)),
                           yscale=c(0, nAnim)))
@@ -148,11 +148,11 @@ dynDrawAnim.atomicAnim <- function(x, s=start(x), d=durn(x), y=1,
                       gp=gpar(col=x$col))
     } else {
         rg <- rectGrob(s, y-.5, 0,
-                       unit(1, "native") - 2*margin, default="native",
+                       unit(1, "native") - 2*margin, default.units="native",
                        just=c("left"),
-                       gp=gpar(col=x$col, fill=adjustcolor(x$col, alpha=.5)))
+                       gp=gpar(col=x$col, fill=adjustcolor(x$col, alpha.f=.5)))
         rgg <- rectGrob(s, y-.5, d,
-                        unit(1, "native") - 2*margin, default="native",
+                        unit(1, "native") - 2*margin, default.units="native",
                         just=c("left"),
                         gp=gpar(col="grey", fill=NA))
         rga <- animateGrob(rg, width=c(0, d), begin=offset + s, duration=d)
