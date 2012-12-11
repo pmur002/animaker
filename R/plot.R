@@ -123,7 +123,8 @@ drawAnim.tracAnim <- function(x, s=start(x), d=durn(x), y=1,
 }
 
 plot.anim <- function(x, ...) {
-    require(grid)
+    if (! require(grid))
+        stop("grid is required for plotting animations")
     drawAnim(x, ...)
 }
 
@@ -179,7 +180,8 @@ dynDrawAnim.containerAnim <- function(x, s=start(x), ..., offset=0) {
 }
 
 dynPlot <- function(x, file="anim.svg", ...) {
-    require(gridSVG)
+    if (! require(gridSVG))
+        stop("gridSVG is required for producing animated plots")
     dynDrawAnim(x, ...)
     gridToSVG(file)
 }
