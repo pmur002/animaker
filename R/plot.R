@@ -87,7 +87,6 @@ drawAnim.vecAnim <- function(x, s=start(x), d=durn(x), y=1,
         FUN(x$anims[[i]], s=starts[i], d=durns[i], y=1,
             newpage=FALSE, lwd=.5*lwd, ...)
     }
-    # grid.rect(gp=gpar(col=rgb(0, 0, 0, alpha), lwd=lwd))
     grid.segments(0:1, unit(0, "npc") + .5*margin,
                   0:1, unit(1, "npc") - .5*margin,
                   gp=gpar(col=rgb(0, 0, 0, alpha), lwd=lwd,
@@ -117,10 +116,6 @@ drawAnim.tracAnim <- function(x, s=start(x), d=durn(x), y=1,
         FUN(x$anims[[i]], s=starts[i], d=durns[i], y=(nAnim - i + 1),
             newpage=FALSE, lwd=lwd, ...)
     }
-    # grid.rect(gp=gpar(col=rgb(0, 0, 0, alpha), lwd=lwd))
-    # grid.segments(0, 0:1, 1, 0:1,
-    #               gp=gpar(col=rgb(0, 0, 0, alpha), lwd=lwd,
-    #                   lineend="butt"))
     upViewport()
     if (newpage) {
         pageCleanup()
@@ -137,8 +132,9 @@ dynDrawAnim <- function(x, ..., offset=0) {
 }
 
 dynDrawAnim.atomicAnim <- function(x, s=start(x), d=durn(x), y=1,
-                               newpage=TRUE, xscale=NULL,
-                               margin=unit(5, "mm"), ..., offset=0) {
+                                   newpage=TRUE, xscale=NULL,
+                                   timeUnit = c("s", "ms", "m"),
+                                   margin=unit(5, "mm"), ..., offset=0) {
     if (newpage) {
         pageSetup(s, d, xscale)
     }
@@ -155,7 +151,21 @@ dynDrawAnim.atomicAnim <- function(x, s=start(x), d=durn(x), y=1,
                         unit(1, "native") - 2*margin, default.units="native",
                         just=c("left"),
                         gp=gpar(col="grey", fill=NA))
-        rga <- animateGrob(rg, width=c(0, d), begin=offset + s, duration=d)
+
+        begin <- offset + s
+        duration <- d
+        # We might not be using seconds, in which case, convert to seconds
+        timeUnit <- match.arg(timeUnit)
+        if (timeUnit == "m") {
+            begin <- begin * 60
+            duration <- duration * 60
+        } else if (timeUnit == "ms") {
+            begin <- begin / 1000
+            duration <- duration / 1000
+        }
+
+        rga <- animateGrob(rg, width=c(0, d),
+                           begin=begin, duration=duration)
         grid.draw(rgg)
         grid.draw(rga)
     }
