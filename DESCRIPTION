@@ -1,6 +1,6 @@
 Package:      animaker
 Version:      0.1
-Suggests:     grid, gridSVG
+Suggests:     grid, gridSVG, RJSONIO
 Title:        Generating Animation Timelines
 Author:       Paul Murrell and Simon Potter.
 Maintainer:   Paul Murrell <p.murrell@auckland.ac.nz>

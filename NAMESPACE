@@ -4,6 +4,7 @@ export(atomic,
        start, durn, "start<-", "durn<-",
        splice,
        timing, frameTiming, frameApply,
+       export,
        dynPlot)
 
 S3method("as.character", "atomicAnim")
@@ -45,3 +46,6 @@ S3method("simplify", "timing")
 S3method("simplify", "timingList")
 S3method("prepare", "timing")
 S3method("prepare", "timingList")
+
+S3method("export", "anim")
+S3method("export", "timing")
