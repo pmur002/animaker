@@ -122,7 +122,7 @@ frameTiming <- function(x, time=0) {
     timing[index]
 }
 
-frameApply <- function(x, FUN=print, fps=1, pause=TRUE, scale=1) {
+frameApply <- function(x, FUN=print, fps=1, pause=TRUE) {
     if (fps < 1) 
         stop("Frames per second less than 1")
     increment <- 1/fps
