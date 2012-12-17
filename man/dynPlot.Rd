@@ -31,3 +31,9 @@ dynPlot(x, file = "anim.svg", ...)
 \author{
   Paul Murrell.
 }
+\examples{\dontrun{
+a <- atomic(start = 2, durn = 4, label = "a")
+b <- atomic(durn = 3, label = "b")
+v <- vec(a, b)
+dynPlot(v)
+}}

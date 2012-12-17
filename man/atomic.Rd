@@ -32,3 +32,8 @@ atomic(start = 0, durn = 0, label = labelSel())
 \author{
   Paul Murrell
 }
+\examples{
+a <- atomic(start = 2, durn = 4, label = "a")
+b <- atomic(durn = 3, label = "b")
+a
+}

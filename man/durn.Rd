@@ -27,3 +27,9 @@ durn(x) <- value
 \author{
   Paul Murrell.
 }
+\examples{
+a <- atomic(start = 2, durn = 4, label = "a")
+durn(a) # 4
+durn(a) <- 10
+durn(a) # 10
+}

@@ -39,3 +39,9 @@ vec(..., start = 0, durn = NULL, label = labelSel())
 \author{
   Paul Murrell.
 }
+\examples{
+a <- atomic(start = 2, durn = 4, label = "a")
+b <- atomic(durn = 3, label = "b")
+v <- vec(a, b)
+v
+}

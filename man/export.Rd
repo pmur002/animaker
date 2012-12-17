@@ -40,3 +40,10 @@ export(x, jsVar = "timingData", file = "timingData.js")
 \author{
   Simon Potter.
 }
+\examples{
+a <- atomic(start = 2, durn = 4, label = "a")
+b <- atomic(durn = 3, label = "b")
+v <- vec(a, b)
+export(timing(v), jsVar = "vTiming")
+export(v, jsVar = "vTiming", file = "animTiming.js")
+}

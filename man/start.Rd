@@ -27,3 +27,11 @@ start(x) <- value
 \author{
   Paul Murrell.
 }
+\examples{
+a <- atomic(start = 2, durn = 4, label = "a")
+b <- atomic(durn = 5, label = "b")
+v <- vec(a, b)
+start(v) # 0
+start(v) <- 10
+start(v) # 10
+}

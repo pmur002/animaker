@@ -35,3 +35,10 @@ timing(x, ...)
 \author{
   Paul Murrell.
 }
+\examples{
+a <- atomic(start = 2, durn = 4, label = "a")
+b <- atomic(durn = 5, label = "b")
+v <- vec(a, b)
+timing(a)
+timing(v)
+}
