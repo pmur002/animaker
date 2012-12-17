@@ -14,14 +14,18 @@ keywords <-
 export <- function(x, jsVar = "timingData", file = "timingData.js") {
     if (! require(RJSONIO))
         stop("the RJSONIO package is required for exporting")
-    if (jsVar %in% keywords)
+    if (! is.null(jsVar) && nzchar(jsVar) && jsVar %in% keywords)
         stop("JS variable is a JS keyword")
     UseMethod("export")
 }
 
 export.timing <- function(x, jsVar = "timingData", file = "timingData.js") {
-    timingJS <- paste("var ", jsVar, " = ",
-                      toJSON(x), ";", sep = "")
+    if (! is.null(jsVar) && nzchar(jsVar))
+        timingJS <- paste("var ", jsVar, " = ",
+                          toJSON(x), ";", sep = "")
+    else
+        timingJS <- toJSON(x)
+
     if (is.null(file) || ! nzchar(file))
         timingJS
     else
