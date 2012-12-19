@@ -4,10 +4,10 @@
 \alias{timing.vecAnim}
 \alias{timing.tracAnim}
 \title{
-  Create a timing scheme from animations
+  Create a timing scheme from animation sequences
 }
 \description{
-  The main purpose of creating animations is to coordinate timing of
+  The main purpose of creating animation sequences is to coordinate timing of
   animation actions. The timing method turns a description of an
   animation into a timing scheme.
 

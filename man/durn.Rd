@@ -22,7 +22,7 @@ durn(x) <- value
   }
 }
 \value{
-  None.
+  The duration (a numeric value).
 }
 \author{
   Paul Murrell.

@@ -1,0 +1,9 @@
+bibentry(
+        bibtype = "techreport",
+        title = "Generating Animation Sequence Descriptions",
+        author = c(person("Paul", "Murrell"),
+                   person("Simon", "Potter")),
+        institution = "The University of Auckland",
+        address = "Auckland, New Zealand",
+        year = 2012,
+        url = "http://stattech.wordpress.fos.auckland.ac.nz/2012-11-generating-animation-sequence-descriptions/")

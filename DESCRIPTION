@@ -2,8 +2,11 @@ Package:      animaker
 Version:      0.1
 Suggests:     grid, gridSVG, RJSONIO
 Title:        Generating Animation Timelines
-Author:       Paul Murrell and Simon Potter.
-Maintainer:   Paul Murrell <p.murrell@auckland.ac.nz>
+Authors@R:    c(person("Paul", "Murrell", role = c("cre", "aut"),
+                       email = "paul@stat.auckland.ac.nz"),
+                person("Simon", "Potter", role = "aut",
+                       email = "simon.potter@auckland.ac.nz"))
 Description:  Functions for describing animation timelines, plus functions
               for visualising the timelines and generating timing schemes.
+URL:          https://github.com/pmur002/animaker, http://stattech.wordpress.fos.auckland.ac.nz/2012-11-generating-animation-sequence-descriptions/
 License:      GPL (>= 2)

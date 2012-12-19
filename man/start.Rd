@@ -22,7 +22,7 @@ start(x) <- value
   }
 }
 \value{
-  None.
+  The start time (a numeric value).
 }
 \author{
   Paul Murrell.

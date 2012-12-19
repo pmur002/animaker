@@ -6,7 +6,7 @@
   Export timing schemes to JSON
 }
 \description{
-  There are forms of animation that are simply possible to do with R
+  There are forms of animation that are simply not possible to do with R
   graphics. In order to use the same timing information in another
   graphics system we export timing schemes to JSON, a simple and
   convenient data exchange format.
