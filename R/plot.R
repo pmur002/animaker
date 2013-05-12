@@ -183,5 +183,5 @@ dynPlot <- function(x, file="anim.svg", ...) {
     if (! require(gridSVG))
         stop("gridSVG is required for producing animated plots")
     dynDrawAnim(x, ...)
-    gridToSVG(file)
+    grid.export(file)
 }
