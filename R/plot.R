@@ -29,7 +29,8 @@ drawScale <- function(xscale) {
 pageSetup <- function(s, d, xscale) {
     grid.newpage()
     xscale <- animScale(s, d, xscale)
-    pushViewport(viewport(width=.8, height=.8,
+    pushViewport(viewport(width=.8,
+                          height=unit(1, "npc") - unit(4, "lines"),
                           xscale=xscale))
     grid.rect(gp=gpar(col=NA, fill="grey95"))
     drawScale(xscale)
